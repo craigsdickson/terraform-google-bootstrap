@@ -11,7 +11,7 @@ function activate-service-key() {
   mkdir -p $rootdir
   tmpdir=$(mktemp -d "$rootdir/servicekey.XXXXXXXX")
   trap "rm -rf $tmpdir" EXIT
-  echo ${GCLOUD_SERVICE_KEY} | base64 --decode -i > ${tmpdir}/gcloud-service-key.json
+  echo ${GCLOUD_SERVICE_KEY} | base64 --decode > ${tmpdir}/gcloud-service-key.json
   gcloud auth activate-service-account --key-file ${tmpdir}/gcloud-service-key.json --quiet
   get-active-account
 }
